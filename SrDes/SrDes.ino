@@ -278,12 +278,38 @@ void CalculateValues()
 void SimpleBlink()
 {
   //analogWrite(analogOutPin, outputValue);
+  ts=2; // set time step values
+  CalculateValues(); //recalculate delay values
   digitalWrite(12, HIGH);   // turn the LED on (HIGH is the voltage level)
   delay(tsdel);                       // wait for delay
   //analogWrite(analogOutPin, 0);
   digitalWrite(12, LOW);    // turn the LED off by making the voltage LOW
   delay(tsdel);                       // wait for delay
   Serial.println("blink");
+}
+
+void DarkBlink()
+{
+  ts=3; // set time step values
+  CalculateValues(); // recalculate delay
+  digitalWrite(12, HIGH); //turn LED on
+  delay(tsdel); //1 time step on
+  digitalWrite(12, LOW);
+  delay(tsdel);
+  delay(tsdel); //2 time steps off
+  Serial.println("dark");  
+}
+
+void BrightBlink()
+{
+  ts=3;
+  CalculateValues();
+  digitalWrite(12, HIGH);
+  delay(tsdel);
+  delay(tsdel); //2 time steps on
+  digitalWrite(12, LOW);
+  delay(tsdel); //1 time step off
+  Serial.println("bright");
 }
 
 // timer0 interrupts at 100 Hz 
